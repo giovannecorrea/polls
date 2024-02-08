@@ -25,12 +25,6 @@ export async function createPoll(app: FastifyInstance) {
                 }
             }
         })
-
-        await prisma.pollOption.createMany({
-            data: options.map((option) => {
-                return { title: option, pollId: poll.id}
-            }),
-        })
     
         return reply.status(201).send({ pollId: poll.id })
     })
